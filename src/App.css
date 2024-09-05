@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Trebuchet MS", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Gradient background for the entire webpage */
+body {
+  background: linear-gradient(to right, #587909, #00d4ff);
+  color: #000;
+  overflow-x: hidden; /* Prevent horizontal scroll due to header */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0 50px; /* Adjust padding as needed */
+  height: 100%;
+  box-sizing: border-box;
+  margin-top: 100px; /* Offset the header height */
 }
 
-.App-link {
-  color: #61dafb;
+/* Tabs container styling */
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Individual tab styling */
+.tab {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Hover effect for tabs */
+.tab:hover {
+  background-color: #f0f0f0;
+}
+
+/* Active tab styling */
+.tab.active {
+  background-color: #e0e0e0;
+  font-weight: bold;
+}
+
+/* Tab content styling */
+.tab-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
 }

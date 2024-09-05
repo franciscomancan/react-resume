@@ -1,0 +1,13 @@
+.header {
+    background-color: transparent; /* Dark background for header */
+    color: #fff; /* White text color */
+    padding: 10px 0; /* 100 pixels padding on top and bottom */
+    text-align: center; /* Center align text */
+    position: relative; /* Ensure positioning context */
+    z-index: 100; /* Ensure the header stays above other content */
+}
+
+.header h1 {
+    margin: 0; /* Remove default margin */
+    font-size: 22px;
+}

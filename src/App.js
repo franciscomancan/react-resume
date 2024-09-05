@@ -1,25 +1,65 @@
-import logo from './logo.svg';
+import React, { useState, Suspense, lazy } from 'react';
 import './App.css';
+import Header from './Header'; // Import the Header component
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// map custom tab name to content objects and file names
+// (dynamic, just add the tab info here and add the js file in tabContents folder)
+const tabNames = {
+    'contact': 'contact',
+    'resume': 'resume',
+    'code samples': 'code',
+    'visual samples': 'visuals',
+    'java': 'java17',
+    'kotlin': 'kotlin',
+    'python': 'python',
+    'sql': 'sql',
+    'scala': 'scala',
+    'ai/ml': 'contact',
+    'gcp': 'tab10Content',
+    'aws': 'contact',
+    'pubs': 'contact',
+};
+const initialPage = 'contact'
+
+// Function to dynamically import tab content components
+const importTabContent = (tabName) => {
+    console.log(`loading tabName ${tabName}`)
+    return lazy(() => import(`./tabContents/${tabNames[tabName]}`));
+};
+
+const TabContent = ({ content }) => {
+    const Content = importTabContent(content);
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <Content />
+        </Suspense>
+    );
+};
+
+const App = () => {
+    console.log(`loading initial page > ${initialPage}`)
+    const [activeTab, setActiveTab] = useState(initialPage);
+
+    // Use the keys from tabNames for tabs
+    const tabs = Object.keys(tabNames);
+
+    return (
+        <div className="app">
+            <Header />
+            <div className="tabs">
+                {tabs.map(tabKey => (
+                    <div
+                        key={tabKey}
+                        className={`tab ${activeTab === tabKey ? 'active' : ''}`}
+                        onClick={() => setActiveTab(tabKey)}
+                    >
+                        {tabKey}
+                    </div>
+                ))}
+            </div>
+            <TabContent content={activeTab} />
+        </div>
+    );
+};
 
 export default App;
