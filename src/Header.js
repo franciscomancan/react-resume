@@ -4,7 +4,7 @@ import './Header.css'; // Import header-specific CSS
 const Header = () => {
     return (
         <header className="header">
-            <h1>Development Reference - Anthony Francis (Generative)</h1>
+            <h1>Development Reference (React) - Anthony Francis (Generative)</h1>
         </header>
     );
 };

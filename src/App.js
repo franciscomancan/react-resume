@@ -14,10 +14,11 @@ const tabNames = {
     'python': 'python',
     'sql': 'sql',
     'scala': 'scala',
-    'ai/ml': 'contact',
-    'gcp': 'tab10Content',
-    'aws': 'contact',
+    'ai/ml': 'ml',
+    'gcp': 'gcp',
+    'aws': 'aws',
     'pubs': 'contact',
+    'prompts': 'prompt',
 };
 const initialPage = 'contact'
 
@@ -37,11 +38,13 @@ const TabContent = ({ content }) => {
 };
 
 const App = () => {
-    console.log(`loading initial page > ${initialPage}`)
+    //console.log(`loading initial page > ${initialPage}`)
     const [activeTab, setActiveTab] = useState(initialPage);
 
     // Use the keys from tabNames for tabs
     const tabs = Object.keys(tabNames);
+
+    document.title = "Anthony Francis - Online"
 
     return (
         <div className="app">
