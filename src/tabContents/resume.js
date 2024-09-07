@@ -1,6 +1,6 @@
 const resume = () => (
     <div>
-        <h2>Resume Document</h2>
+        <h3>resume</h3>
         <iframe
             src="2024-afrancis-resume.pdf"
             width="1000px"

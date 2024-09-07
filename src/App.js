@@ -19,6 +19,7 @@ const tabNames = {
     'aws': 'aws',
     'pubs': 'contact',
     'prompts': 'prompt',
+    'chart':'chart'
 };
 const initialPage = 'contact'
 
