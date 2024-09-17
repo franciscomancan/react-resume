@@ -1,6 +1,6 @@
 const python = () => {
     return (<ul>
-            <h3>concepts/examples</h3>
+            <h3>python concepts & snippets</h3>
             <li><strong>Variables:</strong> Containers for storing data values.
                 <code>{`age = 25`}</code>
             </li>

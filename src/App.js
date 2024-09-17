@@ -19,7 +19,9 @@ const tabNames = {
     'aws': 'aws',
     'pubs': 'contact',
     'prompts': 'prompt',
-    'chart':'chart'
+    'chart':'chart',
+    'flink':'flink',
+    'non-blocking':'nonblocking'
 };
 const initialPage = 'contact'
 

@@ -1,6 +1,7 @@
 const gcp = () => {
     return (
         <ul>
+            <h3>GCP data engineering and related services/tools</h3>
             <li><strong>Data Warehousing:</strong> Centralized storage of large volumes of data from multiple sources.
                 <em>Example:</em> Using Google BigQuery as a serverless, highly scalable data warehouse.
             </li>

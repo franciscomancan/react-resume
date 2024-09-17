@@ -1,7 +1,7 @@
 const kotlin = () => {
     return (
         <ul>
-            <h3>concepts/examples</h3>
+            <h3>kotlin concepts & snippets</h3>
             <li>
                 <strong>Variables:</strong> <code>{`val x = 10 // Immutable, var y = 20 // Mutable`}</code>
             </li>

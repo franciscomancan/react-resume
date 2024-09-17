@@ -1,7 +1,7 @@
 const scala = () => {
         return (
             <ul>
-                <h3>concepts/examples</h3>
+                <h3>scala concepts & snippets</h3>
                 <li>
                     <strong>Variables and Values:</strong> <code>{`val x: Int = 10 // immutable`}</code>{' '}
                     <code>{`var y: Int = 20 // mutable`}</code>

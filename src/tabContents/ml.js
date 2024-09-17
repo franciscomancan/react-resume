@@ -1,7 +1,7 @@
 const ml = () => {
     return (
         <ul>
-        <h3>concepts/examples</h3>
+            <h3>machine learning concepts & snippets</h3>
             <li><strong>Supervised Learning:</strong> Learning from labeled data to make predictions.
                 <em>Example:</em> Predicting house prices based on size and location.
             </li>
@@ -170,7 +170,7 @@ const ml = () => {
                 <em>Example:</em> Enhancing the model by incorporating new data features.
             </li>
         </ul>
-);
+    );
 }
 
 export default ml;

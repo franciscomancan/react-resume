@@ -1,171 +1,324 @@
 const sql = () => {
         return (
             <ul>
-                <h3>concepts/examples</h3>
-                <li>
-                    <strong>SELECT Statement:</strong> <code>{`SELECT *
-                                                               FROM employees;`}</code>
-                </li>
-                <li>
-                    <strong>WHERE Clause:</strong> <code>{`SELECT *
-                                                           FROM employees
-                                                           WHERE age > 30;`}</code>
-                </li>
-                <li>
-                    <strong>JOIN:</strong> <code>{`SELECT *
-                                                   FROM employees
-                                                            JOIN departments ON employees.dept_id = departments.id;`}</code>
-                </li>
-                <li>
-                    <strong>GROUP BY:</strong>{' '}
-                    <code>{`SELECT department, COUNT(*)
-                            FROM employees
-                            GROUP BY department;`}</code>
-                </li>
-                <li>
-                    <strong>ORDER BY:</strong> <code>{`SELECT *
-                                                       FROM employees
-                                                       ORDER BY salary DESC;`}</code>
-                </li>
-                <li>
-                    <strong>INSERT INTO:</strong>{' '}
-                    <code>{`INSERT INTO employees (name, age)
-                            VALUES ('John', 30);`}</code>
-                </li>
-                <li>
-                    <strong>UPDATE:</strong> <code>{`UPDATE employees
-                                                     SET age = 31
-                                                     WHERE name = 'John';`}</code>
-                </li>
-                <li>
-                    <strong>DELETE:</strong> <code>{`DELETE
-                                                     FROM employees
-                                                     WHERE age < 25;`}</code>
-                </li>
-                <li>
-                    <strong>CREATE TABLE:</strong>{' '}
-                    <code>{`CREATE TABLE employees
-                            (
-                                id   INT,
-                                name VARCHAR(50)
-                            );`}</code>
-                </li>
-                <li>
-                    <strong>ALTER TABLE:</strong>{' '}
-                    <code>{`ALTER TABLE employees
-                        ADD COLUMN salary DECIMAL;`}</code>
-                </li>
-                <li>
-                    <strong>DROP TABLE:</strong> <code>{`DROP TABLE employees;`}</code>
-                </li>
-                <li>
-                    <strong>Aggregate Functions:</strong>{' '}
-                    <code>{`SELECT AVG(salary)
-                            FROM employees;`}</code>
-                </li>
-                <li>
-                    <strong>HAVING Clause:</strong>{' '}
-                    <code>{`SELECT department, COUNT(*)
-                            FROM employees
-                            GROUP BY department
-                            HAVING COUNT(*) > 5;`}</code>
-                </li>
-                <li>
-                    <strong>Subqueries:</strong>{' '}
-                    <code>{`SELECT *
-                            FROM employees
-                            WHERE salary > (SELECT AVG(salary) FROM employees);`}</code>
-                </li>
-                <li>
-                    <strong>UNION:</strong>{' '}
-                    <code>{`SELECT name
-                            FROM employees
-                            UNION
-                            SELECT name
-                            FROM managers;`}</code>
-                </li>
-                <li>
-                    <strong>EXISTS:</strong>{' '}
-                    <code>{`SELECT *
-                            FROM employees
-                            WHERE EXISTS (SELECT 1 FROM managers WHERE employees.id = managers.id);`}</code>
-                </li>
-                <li>
-                    <strong>CASE Statement:</strong>{' '}
-                    <code>{`SELECT name, CASE WHEN salary > 50000 THEN 'High' ELSE 'Low' END
-                            FROM employees;`}</code>
-                </li>
-                <li>
-                    <strong>Window Functions:</strong>{' '}
-                    <code>{`SELECT name, salary, RANK() OVER (ORDER BY salary DESC)
-                            FROM employees;`}</code>
-                </li>
-                <li>
-                    <strong>CTE (Common Table Expressions):</strong>{' '}
-                    <code>{`WITH top_salaries AS (SELECT * FROM employees WHERE salary > 50000)
-                            SELECT *
-                            FROM top_salaries;`}</code>
-                </li>
-                <li>
-                    <strong>Indexes:</strong>{' '}
-                    <code>{`CREATE INDEX idx_name ON employees (name);`}</code>
-                </li>
-                <li>
-                    <strong>Transactions:</strong>{' '}
-                    <code>{`BEGIN TRANSACTION; UPDATE employees SET salary = 60000 WHERE id = 1; COMMIT;`}</code>
-                </li>
-                <li>
-                    <strong>ROLLBACK:</strong>{' '}
-                    <code>{`BEGIN TRANSACTION; UPDATE employees SET salary = 60000 WHERE id = 1; ROLLBACK;`}</code>
-                </li>
-                <li>
-                    <strong>Views:</strong>{' '}
-                    <code>{`CREATE VIEW high_earners AS SELECT * FROM employees WHERE salary > 50000;`}</code>
-                </li>
-                <li>
-                    <strong>Triggers:</strong>{' '}
-                    <code>{`CREATE TRIGGER after_insert AFTER INSERT ON employees FOR EACH ROW BEGIN UPDATE departments SET total_employees = total_employees + 1; END;`}</code>
-                </li>
-                <li>
-                    <strong>Stored Procedures:</strong>{' '}
-                    <code>{`CREATE PROCEDURE increase_salary() BEGIN UPDATE employees SET salary = salary * 1.10; END;`}</code>
-                </li>
-                <li>
-                    <strong>Pivot:</strong>{' '}
-                    <code>{`SELECT department, SUM(salary)
-                            FROM employees
-                            GROUP BY department;`}</code>
-                </li>
-                <li>
-                    <strong>JSON Functions:</strong>{' '}
-                    <code>{`SELECT JSON_EXTRACT(data, '$.name')
-                            FROM employees;`}</code>
-                </li>
-                <li>
-                    <strong>Full-Text Search:</strong>{' '}
-                    <code>{`SELECT *
-                            FROM documents
-                            WHERE MATCH (content) AGAINST('search terms');`}</code>
-                </li>
-                <li>
-                    <strong>Analytic Functions:</strong>{' '}
-                    <code>{`SELECT name, salary, SUM(salary) OVER (PARTITION BY department)
-                            FROM employees;`}</code>
-                </li>
-                <li>
-                    <strong>Recursive CTEs:</strong>{' '}
-                    <pre><code>{`WITH RECURSIVE employee_hierarchy AS (SELECT id, name
-                                   FROM employees
-                                   WHERE manager_id IS NULL
-                                   UNION ALL
-                                   SELECT e.id, e.name
-                                   FROM employees e
-                                            INNER JOIN employee_hierarchy h ON e.manager_id = h.id)
-                                 SELECT *
-                                 FROM employee_hierarchy;`}</code></pre>
-                </li>
-            </ul>
-        );
+                <h3>sql concepts & snippets</h3>
+        <li>
+            <strong>1. SELECT Statement:</strong>
+            <pre>{`
+                SELECT first_name, last_name
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>2. WHERE Clause:</strong>
+            <pre>{`
+                SELECT first_name, last_name
+                FROM employees
+                WHERE department = 'Sales';
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>3. JOINs (INNER JOIN):</strong>
+            <pre>{`
+                SELECT e.first_name, e.last_name, d.department_name
+                FROM employees e
+                         INNER JOIN departments d ON e.department_id = d.department_id;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>4. LEFT JOIN:</strong>
+            <pre>{`
+                SELECT e.first_name, e.last_name, d.department_name
+                FROM employees e
+                         LEFT JOIN departments d ON e.department_id = d.department_id;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>5. RIGHT JOIN:</strong>
+            <pre>{`
+                SELECT e.first_name, e.last_name, d.department_name
+                FROM employees e
+                         RIGHT JOIN departments d ON e.department_id = d.department_id;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>6. FULL OUTER JOIN:</strong>
+            <pre>{`
+                SELECT e.first_name, e.last_name, d.department_name
+                FROM employees e
+                         FULL OUTER JOIN departments d ON e.department_id = d.department_id;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>7. CROSS JOIN:</strong>
+            <pre>{`
+                SELECT e.first_name, d.department_name
+                FROM employees e
+                         CROSS JOIN departments d;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>8. GROUP BY and Aggregate Functions:</strong>
+            <pre>{`
+                SELECT department, COUNT(*) AS num_employees
+                FROM employees
+                GROUP BY department;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>9. HAVING Clause:</strong>
+            <pre>{`
+                SELECT department, COUNT(*) AS num_employees
+                FROM employees
+                GROUP BY department
+                HAVING COUNT(*) > 10;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>10. ORDER BY Clause:</strong>
+            <pre>{`
+                SELECT first_name, last_name, salary
+                FROM employees
+                ORDER BY salary DESC;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>11. LIMIT and OFFSET:</strong>
+            <pre>{`
+                SELECT first_name, last_name
+                FROM employees
+                ORDER BY last_name LIMIT 10
+                OFFSET 20;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>12. Subqueries:</strong>
+            <pre>{`
+                SELECT first_name, last_name
+                FROM employees
+                WHERE department_id = (SELECT department_id
+                                       FROM departments
+                                       WHERE department_name = 'HR');
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>13. EXISTS Clause:</strong>
+            <pre>{`
+                SELECT department_name
+                FROM departments d
+                WHERE EXISTS (SELECT 1
+                              FROM employees e
+                              WHERE e.department_id = d.department_id);
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>14. IN Clause:</strong>
+            <pre>{`
+                SELECT first_name, last_name
+                FROM employees
+                WHERE department_id IN (1, 2, 3);
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>15. CASE Statement:</strong>
+            <pre>{`
+                SELECT first_name,
+                       salary,
+                       CASE
+                           WHEN salary > 100000 THEN 'High'
+                           WHEN salary BETWEEN 50000 AND 100000 THEN 'Medium'
+                           ELSE 'Low'
+                           END AS salary_range
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>16. COALESCE Function:</strong>
+            <pre>{`
+                SELECT first_name, COALESCE(middle_name, 'N/A') AS middle_name
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>17. NULLIF Function:</strong>
+            <pre>{`
+                SELECT first_name, NULLIF(salary, 0) AS adjusted_salary
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>18. STRING Functions (e.g., CONCAT, SUBSTR):</strong>
+            <pre>{`
+                SELECT CONCAT(first_name, ' ', last_name) AS full_name
+                FROM employees;
+
+                SELECT SUBSTR(first_name, 1, 3) AS short_name
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>19. DATE Functions (e.g., CURRENT_DATE, DATEADD):</strong>
+            <pre>{`
+                SELECT first_name, hire_date, CURRENT_DATE - hire_date AS days_with_company
+                FROM employees;
+
+                SELECT first_name, DATEADD(year, 5, hire_date) AS promotion_date
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>20. Window Functions (ROW_NUMBER):</strong>
+            <pre>{`
+                SELECT first_name,
+                       salary,
+                       ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rank
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>21. Window Functions (RANK and DENSE_RANK):</strong>
+            <pre>{`
+                SELECT first_name,
+                       salary,
+                       RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank, DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS dense_salary_rank
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>22. Window Functions (LEAD and LAG):</strong>
+            <pre>{`
+                SELECT first_name,
+                       salary,
+                       LAG(salary, 1) OVER (ORDER BY hire_date) AS previous_salary, LEAD(salary, 1) OVER (ORDER BY hire_date) AS next_salary
+                FROM employees;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>23. CTE (Common Table Expressions):</strong>
+            <pre>{`
+                WITH DepartmentSalaries AS (SELECT department, AVG(salary) AS avg_salary
+                                            FROM employees
+                                            GROUP BY department)
+                SELECT e.first_name, e.last_name, e.salary, ds.avg_salary
+                FROM employees e
+                         JOIN DepartmentSalaries ds ON e.department = ds.department
+                WHERE e.salary > ds.avg_salary;
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>24. MATERIALIZED VIEW:</strong>
+            <pre>{`
+    CREATE MATERIALIZED VIEW department_summary AS
+    SELECT department, COUNT(*) AS num_employees, AVG(salary) AS avg_salary
+    FROM employees
+    GROUP BY department;
+    `}</pre>
+        </li>
+
+        <li>
+            <strong>25. INDEXES:</strong>
+            <pre>{`
+                CREATE INDEX idx_last_name ON employees (last_name);
+            `}</pre>
+        </li>
+
+        <li>
+            <strong>26. TRIGGERS:</strong>
+            <pre>{`
+    CREATE TRIGGER salary_update
+    AFTER UPDATE OF salary
+    ON employees
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO salary_audit (employee_id, old_salary, new_salary, change_date)
+        VALUES (:OLD.employee_id, :OLD.salary, :NEW.salary, CURRENT_DATE);
+    END;
+    `}</pre>
+        </li>
+
+        <li>
+            <strong>27. STORED PROCEDURES:</strong>
+            <pre>{`
+    CREATE PROCEDURE UpdateEmployeeSalary (
+        IN emp_id INT, 
+        IN new_salary DECIMAL
+    )
+    BEGIN
+        UPDATE employees
+        SET salary = new_salary
+        WHERE employee_id = emp_id;
+    END;
+    `}</pre>
+        </li>
+
+        <li>
+            <strong>28. FUNCTIONS:</strong>
+            <pre>{`
+    CREATE FUNCTION GetEmployeeFullName (emp_id INT)
+    RETURNS VARCHAR(255)
+    BEGIN
+        DECLARE full_name VARCHAR(255);
+        SELECT CONCAT(first_name, ' ', last_name) INTO full_name
+        FROM employees
+        WHERE employee_id = emp_id;
+        RETURN full_name;
+    END;
+    `}</pre>
+        </li>
+
+        <li>
+            <strong>29. TRANSACTIONS:</strong>
+            <pre>{`
+    START TRANSACTION;
+    UPDATE employees SET salary = salary * 1.05 WHERE department = 'Sales';
+    COMMIT;
+    `}</pre>
+        </li>
+
+        <li>
+            <strong>30. EXPLAIN and QUERY PLAN:</strong>
+            <pre>{`
+    EXPLAIN SELECT first_name, last_name
+    FROM employees
+    WHERE department = 'Sales';
+    `}</pre>
+        </li>
+        <li>
+            <strong>31. Recursive CTEs:</strong>{' '}
+            <pre><code>{`WITH RECURSIVE employee_hierarchy AS (SELECT id, name
+                                                               FROM employees
+                                                               WHERE manager_id IS NULL
+                                                               UNION ALL
+                                                               SELECT e.id, e.name
+                                                               FROM employees e
+                                                                        INNER JOIN employee_hierarchy h ON e.manager_id = h.id)
+                         SELECT *
+                         FROM employee_hierarchy;`}</code></pre>
+        </li>
+    </ul>);
 };
 
 export default sql;

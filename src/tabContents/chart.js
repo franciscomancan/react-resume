@@ -3,7 +3,7 @@ import AnimatedBarChart from './AnimatedBarChart';
 const chart = () => {
     return (
         <div>
-            <h3>Language Popularity</h3>
+            <h3>Language Popularity - D3 rendering</h3>
             <AnimatedBarChart />
         </div>
     );
