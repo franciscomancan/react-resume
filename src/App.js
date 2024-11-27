@@ -9,7 +9,9 @@ const tabNames = {
     'resume': 'resume',
     'code samples': 'code',
     'visual samples': 'visuals',
-    'java': 'java17',
+    'java': 'java',
+    'java functional': 'javafunc',
+    'java non-blocking':'nonblocking',
     'kotlin': 'kotlin',
     'python': 'python',
     'sql': 'sql',
@@ -17,11 +19,14 @@ const tabNames = {
     'ai/ml': 'ml',
     'gcp': 'gcp',
     'aws': 'aws',
-    'pubs': 'contact',
-    'prompts': 'prompt',
+    'pubs': 'pubs',
+    'prompting': 'prompting',
     'chart':'chart',
     'flink':'flink',
-    'non-blocking':'nonblocking'
+    'nix': 'nix',
+    'kafka': 'kafka',
+    'regex': 'regex',
+    'splunk': 'splunk'
 };
 const initialPage = 'contact'
 
