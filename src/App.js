@@ -19,7 +19,7 @@ const tabNames = {
     'ai/ml': 'ml',
     'gcp': 'gcp',
     'aws': 'aws',
-    'pubs': 'pubs',
+    'biqquery': 'bq',
     'prompting': 'prompting',
     'chart':'chart',
     'flink':'flink',
